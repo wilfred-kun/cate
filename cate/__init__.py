@@ -1,5 +1,7 @@
 from collections import defaultdict
 from time import time as get_time
+import os.path
+import pathlib
 
 from pynegin.components import text, component, line
 from pynegin.constants.colors import COLORS
@@ -39,7 +41,9 @@ class Canvas(component.Component):
 class Cate(GameLogic):
     """Wrapper class for pynegin"""
     def __init__(self, window_size=(800,600), window_title="Cate", window_color=(255, 255, 255), showing_axis=True):
-        self.window = pynegin.Window(window_size, window_title, backgroundColor=window_color)
+        icon_path = str(pathlib.Path(os.path.dirname(__file__)).joinpath("assets/icon.png"))
+
+        self.window = pynegin.Window(window_size, window_title, backgroundColor=window_color, customIconPath=icon_path)
         self.engine = pynegin.Engine(self, self.window)
         self.context = Canvas(self.window, window_size, window_color)
         self.context.center()
