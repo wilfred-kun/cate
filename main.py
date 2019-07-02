@@ -5,7 +5,7 @@ from cate import *
 @on_start
 def say_hi():
     say("Hello world!")
-    
+
 @on_key(Keys.K_p)
 def void():
     say(3)

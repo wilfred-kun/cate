@@ -84,6 +84,8 @@ class Cate(GameLogic):
         previous = get_time()
 
         while to_wait > 0:
+            if self.window.shouldStop(): # Close button clicked
+                break   # TODO: throws ugly exception, because bad design, fix that
             self.window.update() # Pump events so it does not hang
             now = get_time()
             delta = now - previous
@@ -123,10 +125,15 @@ class Cate(GameLogic):
 
 
     def wait_for(self, *keys):
+        if len(keys) < 1:
+            raise ValueError("Variable argument `keys` must have at least 1 key.")
+
         self.render() # Make sure latest changes are visible
         pressed_keys = self.window.getPressedKeys()
 
         while True:
+            if self.window.shouldStop(): # Close button clicked
+                break   # TODO: throws ugly exception, because bad design, fix that
             self.window.update() # Listen for new keys/prevent hanging
             for key in keys:
                 if self.window.isKeyPressed(key):
