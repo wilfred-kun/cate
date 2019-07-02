@@ -24,6 +24,9 @@ Sleep the execution of the program for `time` amount of seconds.
 * `wait_for(*keys)`
 Wait for a key in `keys` to be pressed. Return the pressed key.
 
+* `set_text_color(color)`
+Set the text color.
+
 # To do:
 Input, move functions, sound functions, make it look nicer, wait, print for x seconds.
 

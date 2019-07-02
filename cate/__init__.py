@@ -33,6 +33,9 @@ class Canvas(component.Component):
     def set_text(self, text):
         self.components['text'].setText(text)
 
+    def set_text_color(self, color):
+        self.components['text'].setColor(color)
+
     def add_component(self, component, alias):
         self.components[alias] = component
 
@@ -113,6 +116,10 @@ class Cate(GameLogic):
         self.context.set_text(str(msg))
 
 
+    def set_text_color(self, color):
+        self.context.set_text_color(color)
+
+
     def show_axis(self, e):
         self.context.components['y_axis'].setVisible(e)
         self.context.components['x_axis'].setVisible(e)
@@ -164,6 +171,9 @@ def on_key_down(key):
 
 def say(msg):
     cate.say(msg)
+
+def set_text_color(color):
+    cate.set_text_color(color)
 
 def start():
     cate.start()

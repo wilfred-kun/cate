@@ -6,8 +6,16 @@ from cate import *
 def say_hi():
     say("Hello world!")
 
+@on_key(Keys.K_b)
+def set_color_black():
+    set_text_color(COLORS.BLACK)
+
+@on_key(Keys.K_g)
+def set_color_green():
+    set_text_color(COLORS.GREEN)
+
 @on_key(Keys.K_p)
-def void():
+def liftoff():
     say(3)
     pause(1)
     say(2)
@@ -15,10 +23,6 @@ def void():
     say(1)
     pause(1)
     say("LIFT OFF")
-
-@on_key(Keys.K_k)
-def do():
-    say("hay")
 
 @on_key(Keys.K_ESCAPE)
 def quit():
