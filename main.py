@@ -37,6 +37,14 @@ def quit():
     else:
         say("Good choice :)")
 
+@on_key(Keys.K_a)
+def asker():
+    print(ask())
+
+@on_key(Keys.K_a)
+def asker2():
+    print(ask())
+
 @on_key_down(Keys.K_a)
 def toggleaxis():
     toggle_axis()

@@ -3,7 +3,7 @@ from time import time as get_time
 import os.path
 import pathlib
 
-from pynegin.components import text, component, line
+from pynegin.components import text, component, line, inputField
 from pynegin.constants.colors import COLORS
 from pynegin.gameLogic import GameLogic
 import pygame
@@ -21,7 +21,7 @@ class Canvas(component.Component):
         super().__init__(container, surface=surface)
 
         self.components = {}
-        self.components['text'] = text.Text(self, color=COLORS.BLACK, textSize=40)
+        self.components['text'] = inputField.InputField(self, color=COLORS.BLACK, textSize=40)
 
     def show(self, surf):
         self.surface.fill(self.color)
@@ -116,6 +116,22 @@ class Cate(GameLogic):
         self.context.set_text(str(msg))
 
 
+    def ask(self):
+        ipf = self.context.components['text']
+        ipf.text = ""
+
+        while not ipf.ready:
+            self.window.update()
+            if self.window.shouldStop():
+                break
+            self.render()
+            ipf.updateInput(self.window.getPressedKeys())
+
+        return ipf.text
+
+        ## TODO: when this is called twice it outputs a lot of \r's
+
+
     def set_text_color(self, color):
         self.context.set_text_color(color)
 
@@ -171,6 +187,9 @@ def on_key_down(key):
 
 def say(msg):
     cate.say(msg)
+
+def ask():
+    return cate.ask()
 
 def set_text_color(color):
     cate.set_text_color(color)
