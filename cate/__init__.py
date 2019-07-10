@@ -127,6 +127,7 @@ class Cate(GameLogic):
             self.render()
             ipf.updateInput(self.window.getPressedKeys())
 
+        ipf.ready = False # Patch til next update of pynegin
         return ipf.text
 
         ## TODO: when this is called twice it outputs a lot of \r's
